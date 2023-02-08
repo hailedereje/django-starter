@@ -1,0 +1,54 @@
+    {% extends 'main.html' %}
+    
+    {% block content%}
+    <style>
+        body{
+            background-color: azure;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        a{
+            text-decoration: dashed;
+            /* color: black; */
+        }
+        
+    </style>
+   
+   <div class="container" >
+        <div class="department">
+            <h4>
+                <a href="{% url 'home' %}">ALL</a> 
+            </h4> 
+            {% for student in studentActivity %}
+
+                <h4>
+                    <a href="{% url 'home' %}?q={{student.name}}">{{student.name}}</a> 
+                </h4> 
+                <hr>
+            {% endfor %} 
+        </div>
+        
+        <div class="studentList">
+            <h2 class="link">
+                @<a href="{% url 'create' %}">create</a> &nbsp; {{room}} rooms availble
+            </h2>
+                {% for student in student_list %}
+                    {% if request.user == student.host %}
+                    <h4>
+                        <a href="{% url 'update' student.id %}" >update</a> &nbsp;<a href="{% url 'delete' student.id %}">delete</a><br>
+                    </h4>
+                    {% endif %}
+                    <h2>
+                        <a href="{% url 'detail' student.id %}">{{ student.name}}</a>
+
+                    </h2>    
+                    <h4>{{student.host}}</h4>
+                
+                    <hr>
+                {% endfor %}
+        </div>
+   </div>
+        
+    {% endblock %}

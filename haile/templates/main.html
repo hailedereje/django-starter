@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <h2>
+        MY APP
+    </h2>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">logout</a>
+    <hr>
+    {% else %}
+    <a href="{% url 'login' %}">LOGIN</a>
+    <hr>
+    {% endif %}
+
+    <form action="{% url 'home' %}" method="get">
+        <input type="text" placeholder="Search ... " name="q"/>
+    </form>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

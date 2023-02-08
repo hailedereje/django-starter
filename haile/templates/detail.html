@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+    
+{% block content%}
+    <a href="{{request.META.HTTP_REFERER}}">BACK</a>
+    <h3> {{student.created|timesince}} AGO</h3>
+    <h2>
+        {{student.name|center:'15'}}{{student.id|center:'15'}} {{student.age|center:'15'}}</small>
+    </h2>
+    
+{% endblock %}
